@@ -1,0 +1,37 @@
+<h1>Burger Town!</h1>
+
+<h2>Order Up:</h2>
+
+<ul>
+  {{#each burgers}}
+    {{#unless eaten}}
+      {{> burger/burger-block sleep=true}}
+    {{/unless}}
+  {{/each}}
+</ul>
+
+<h2>All Gone, Buddy:</h2>
+
+<ul>
+  {{#each burgers}}
+    {{#if eaten}}
+      {{> burger/burger-block sleep=false}}
+    {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Place your order:</h2>
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="sleepy">Hungry?</label><br>
+    <input type="radio" name="sleepy" value="0"> Let's Eat!
+  </div>
+
+  <button type="submit">Add Order</button>
+</form>
