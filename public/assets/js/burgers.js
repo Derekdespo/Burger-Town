@@ -1,4 +1,4 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
+// setting up the ajax calls to the html produced in the handlebars
 $(function() {
   $(".change-sleep").on("click", function(event) {
     var id = $(this).data("id");
@@ -20,7 +20,7 @@ $(function() {
       }
     );
   });
-
+// hooking into the form in the handlebars that involves submitting a new burger
   $(".create-form").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
@@ -30,7 +30,7 @@ $(function() {
       sleepy: $("[name=sleepy]:checked").val().trim()
     };
 
-    // Send the POST request.
+    // Send the POST request 
     $.ajax("/api/burgers", {
       type: "POST",
       data: newBurger
@@ -42,17 +42,17 @@ $(function() {
       }
     );
   });
-
+// sets up the button that allows for burgers to be deleted
   $(".delete-burger").on("click", function(event) {
     var id = $(this).data("id");
 
-    // Send the DELETE request.
+    // Send the DELETE request. to  delete from the database
     $.ajax("/api/burgers/" + id, {
       type: "DELETE"
     }).then(
       function() {
         console.log("deleted burger", id);
-        // Reload the page to get the updated list
+        // Reload the page to get the updated burger list
         location.reload();
       }
     );

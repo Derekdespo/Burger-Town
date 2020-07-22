@@ -2,10 +2,10 @@ var express = require("express");
 
 var router = express.Router();
 
-// Import the model (cat.js) to use its database functions.
+// Import the model (burger.js) to use its database functions.
 var burger = require("../models/burger.js");
 
-// Create all our routes and set up logic within those routes where required.
+// Creating routes for the logic to flow to the handlebars
 router.get("/", function(req, res) {
   burger.all(function(data) {
     var hbsObject = {
@@ -15,7 +15,7 @@ router.get("/", function(req, res) {
     res.render("index", hbsObject);
   });
 });
-
+// posting a new burger into the handlebars
 router.post("/api/burgers", function(req, res) {
   burger.create([
     "name", "eaten"
@@ -31,7 +31,7 @@ router.put("/api/burgers/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   console.log("condition", condition);
-
+// moving the burger on the handlebars based on the update
   burger.update({
     eaten: req.body.eaten
   }, condition, function(result) {
@@ -43,7 +43,7 @@ router.put("/api/burgers/:id", function(req, res) {
     }
   });
 });
-
+// removing the deleted burger from the handlebars
 router.delete("/api/burgers/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 

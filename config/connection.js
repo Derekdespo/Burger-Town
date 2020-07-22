@@ -1,6 +1,7 @@
 // Set up MySQL connection.
+// setting a variable that will call on the mysql npm
 var mysql = require("mysql");
-
+// for deploying to heroku
 if(process.env.JAWSDB_URL) {
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
@@ -8,7 +9,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "Jisoo1017!",
+  password: "",
   database: "burgers_db"
 });
 };
